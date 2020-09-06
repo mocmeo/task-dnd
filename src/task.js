@@ -9,6 +9,16 @@ const Container = styled.div`
   margin-bottom: 8px;
   transition: background-color 0.4s;
   background-color: ${(props) => (props.isDragging ? 'lightgreen' : 'white')};
+
+  display: flex;
+`;
+
+const Handle = styled.div`
+  width: 20px;
+  height: 20px;
+  background-color: orange;
+  border-radius: 4px;
+  margin-right: 8px;
 `;
 
 export default class Task extends React.Component {
@@ -18,10 +28,10 @@ export default class Task extends React.Component {
         {(provided, snapshot) => (
           <Container
             {...provided.draggableProps}
-            {...provided.dragHandleProps}
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
+            <Handle {...provided.dragHandleProps} />
             {this.props.task.content}
           </Container>
         )}
